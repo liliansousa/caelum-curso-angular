@@ -1,13 +1,22 @@
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/login/login.component';
-import { CadastroComponent } from './modules/cadastro/cadastro.component';
 import { CaixaDeEntradaComponent} from './modules/caixa-de-entrada/caixa-de-entrada.component';
 
 const rotas: Routes = [
   { path: '', component: LoginComponent },
   { path: 'inbox', component: CaixaDeEntradaComponent },
-  { path: 'cadastro', component: CadastroComponent },
+  { path: 'cadastro', loadChildren: './modules/cadastro/cadastro.module#CadastroModule'},
   { path: '**', redirectTo: 'inbox' }
 ];
 
-export const ModuloRoteamento = RouterModule.forRoot(rotas);
+@NgModule({
+  imports: [
+    RouterModule.forRoot(rotas)
+  ],
+  exports: [ RouterModule ]
+})
+
+export class ModuloRoteamento {
+
+}
