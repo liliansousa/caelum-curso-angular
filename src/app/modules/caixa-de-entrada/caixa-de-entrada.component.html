@@ -4,8 +4,7 @@
     <div class="page-content">
 
       <div class="mdl-grid">
-
-          <cmail-list-item></cmail-list-item>
+        <!--  <cmail-list-item></cmail-list-item> -->
 
 
         <!-- Email List-->
@@ -24,10 +23,12 @@
         </button>
 
         <!-- newEmail--active -->
-        <form #forEmail="ngForm" class="newEmail cmailForm" [ngClass]="{'newEmail--active': isNewEmailFormOpen}" (ngsubmit)="handleNewEmail(formEmail)">
+        <form #formEmail="ngForm" class="newEmail cmailForm" [ngClass]="{'newEmail--active': isNewEmailFormOpen}" (ngSubmit)="handleNewEmail(formEmail)">
           <div class="newEmail__card demo-card-wide mdl-card mdl-shadow--2dp">
             <div class="newEmail__titleArea mdl-card__title">
-              <h2 class="newEmail__title mdl-card__title-text">Novo Email</h2>
+              <h2 class="newEmail__title mdl-card__title-text">
+                Novo Email
+              </h2>
             </div>
             <div class="newEmail__body mdl-card__supporting-text">
               <!-- Form Fields -->

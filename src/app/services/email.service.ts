@@ -11,6 +11,7 @@ export class EmailService {
   api = 'http://localhost:3200/emails';
   cabecalho = new HttpHeaders({ Authorization: localStorage.getItem('TOKEN') });
   constructor(private http: HttpClient) { }
+
   enviar({ destinatario, assunto, conteudo }) {
     const emailParaApi = {
       to: destinatario,
@@ -28,6 +29,26 @@ export class EmailService {
               conteudo: emailApi.content,
               dataDeEnvio: emailApi.created_at
             });
+          }
+        )
+      );
+  }
+
+  listar() {
+    return this.http
+      .get(this.api, { headers: this.cabecalho })
+      .pipe<Email[]>(
+        map(
+          (response: any[]) => {
+            return response
+              .map(
+                emailApi => new Email({
+                  destinatario: emailApi.to,
+                  assunto: emailApi.subject,
+                  conteudo: emailApi.content,
+                  dataDeEnvio: emailApi.created_at
+                })
+              );
           }
         )
       );

@@ -1,3 +1,4 @@
+import { EmailService } from './services/email.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,9 @@ import { SharedComponentModule } from './modules/shared-component/shared-compone
     SharedComponentModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    EmailService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

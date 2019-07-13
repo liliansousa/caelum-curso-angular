@@ -1,6 +1,7 @@
+import { EmailService } from './../../services/email.service';
 // import { Email } from './../../models/email';
 import { NgForm } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -8,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './caixa-de-entrada.component.html',
   styleUrls: ['./caixa-de-entrada.component.css']
 })
-export class CaixaDeEntradaComponent {
+export class CaixaDeEntradaComponent implements OnInit {
 
   private _isNewEmailFormOpen = false;
   emailList = [];
@@ -17,7 +18,6 @@ export class CaixaDeEntradaComponent {
     assunto: '',
     conteudo: ''
   };
-  emailService: any;
   emailError: any;
 
   get isNewEmailFormOpen() {
@@ -42,14 +42,22 @@ export class CaixaDeEntradaComponent {
             assunto: '',
             conteudo: ''
           };
-          // formEmail.reset();
+          formEmail.reset();
         }
-        , (responseError: HttpErrorResponse) => {
-          this.emailError = responseError.error;
-          console.error('deu ruim' + responseError.error);
-        }
+        , erro => console.error(erro)
       );
 
-    // formEmail.reset();
+
+  }
+
+  constructor(private emailService: EmailService) { }
+
+  ngOnInit() {
+    this.emailService
+      .listar()
+      .subscribe(
+        lista => {
+          this.emailList = lista;
+        });
   }
 }
