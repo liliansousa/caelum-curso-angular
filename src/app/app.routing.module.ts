@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
 import { CaixaDeEntradaComponent} from './modules/caixa-de-entrada/caixa-de-entrada.component';
 
 const rotas: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', loadChildren: './modules/login/login.module#LoginModule'},
   { path: 'inbox', component: CaixaDeEntradaComponent },
   { path: 'cadastro', loadChildren: './modules/cadastro/cadastro.module#CadastroModule'},
+  { path: '', component: CaixaDeEntradaComponent },
   { path: '**', redirectTo: 'inbox' }
 ];
 
