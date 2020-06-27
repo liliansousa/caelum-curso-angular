@@ -3,9 +3,16 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cmail": {
+    "cmail1": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "prefix": "cmail"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "cmail"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cmail",
+            "outputPath": "dist/cmail1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +31,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/globalFab.css",
+              "src/assets/css/tooltip.css",
+              "src/assets/css/errorMessages.css",
+              "src/assets/css/newEmail.css"
             ],
             "scripts": []
           },
@@ -62,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cmail:build"
+            "browserTarget": "cmail1:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cmail:build:production"
+              "browserTarget": "cmail1:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cmail:build"
+            "browserTarget": "cmail1:build"
           }
         },
         "test": {
@@ -110,15 +121,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cmail:serve"
+            "devServerTarget": "cmail1:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cmail:serve:production"
+              "devServerTarget": "cmail1:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "cmail"
+  "defaultProject": "cmail1"
 }
